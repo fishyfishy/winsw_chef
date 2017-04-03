@@ -1,0 +1,18 @@
+<service>
+  <id><%= @service_name %></id>
+  <name><%= @service_name %></name>
+  <description><%= @description %></description>
+  <% unless @env_variables.empty? -%>
+    <% @env_variables.each do |key,value| -%>
+  <env name="<%= key %>" value="<%= value %>"/>
+    <% end -%>
+  <% end -%>
+  <executable><%= @executable %></executable>
+  <arguments><%= @args.join(' ') %></arguments>
+  <logmode>rotate</logmode>
+  <% unless @options.empty? -%>
+    <% @options.each do |key,value| -%>
+  <<%= key %>><%= value %></<%= key %>>
+    <% end -%>
+  <% end -%>
+</service>
